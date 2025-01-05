@@ -1,7 +1,10 @@
 extends CharacterBody3D
-
+var health = 100
+var mana = 100
 var stamina = 1000
 var double_jump = false
+var health_range = [0,100]
+var stamina_range = [0,100]
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var cam: Camera3D = $Camera3D
@@ -9,8 +12,15 @@ var sprintmulti = 1
 var slide_multiplier = 4
 var last_dir = Vector3.ZERO
 var mouse_sensitivity = 0.002
+@onready var healthbar: TextureProgressBar = $Node2D/health
+@onready var staminabar: TextureProgressBar = $Node2D/stamina
+@onready var manabar: TextureProgressBar = $Node2D/mana
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _process(delta: float) -> void:
+	staminabar.value = stamina / 100
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("sprint") and stamina > 1 or Input.is_action_pressed("dash") and stamina > 1:

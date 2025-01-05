@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vxt6kipbm1uf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gslre"]
+
+[node name="3Dpawn" type="MeshInstance3D"]
+mesh = SubResource("CapsuleMesh_gslre")
