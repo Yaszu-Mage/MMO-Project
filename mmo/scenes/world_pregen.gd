@@ -3,13 +3,16 @@ var time = 0
 @onready var sun: DirectionalLight3D = $sun
 var player_load = preload("res://scenes/plr.tscn")
 var players = []
+var local_player
 func _ready():
-	multiplayer.peer_connected.connect(player_joined)
+	pass
 
 func _process(delta: float) -> void:
 	time += 0.0001
 	sun.rotation.x = time
 
+func add_previous_players():
+	pass
 
 func player_joined():
 	var instance = player_load.instantiate()

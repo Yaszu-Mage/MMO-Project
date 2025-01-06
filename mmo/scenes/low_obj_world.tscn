@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://v4yh5k8n7puk"]
+
+[ext_resource type="Script" path="res://scripts/multiplayer-inbuilt.gd" id="1_c7h21"]
+[ext_resource type="Material" uid="uid://m2e3g8mq55ed" path="res://images/mats/badrock.tres" id="2_rx1kp"]
+[ext_resource type="PackedScene" uid="uid://b04kp0ti5wbgs" path="res://scenes/plr.tscn" id="3_weojn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_43ye1"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5t34i"]
+sky_material = SubResource("ProceduralSkyMaterial_43ye1")
+
+[sub_resource type="Environment" id="Environment_rulp6"]
+background_mode = 2
+sky = SubResource("Sky_5t34i")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hf2l0"]
+material = ExtResource("2_rx1kp")
+size = Vector2(99999, 99999)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m745s"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rulp6")
+
+[node name="multi_inbuilt" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_c7h21")
+
+[node name="GridContainer" type="GridContainer" parent="multi_inbuilt"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="host" type="Button" parent="multi_inbuilt/GridContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="join" type="Button" parent="multi_inbuilt/GridContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="BOTTOM" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3761, 0)
+mesh = SubResource("PlaneMesh_hf2l0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BOTTOM"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BOTTOM/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_m745s")
+
+[node name="plr" parent="." instance=ExtResource("3_weojn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.68208)
+
+[connection signal="pressed" from="multi_inbuilt/GridContainer/host" to="multi_inbuilt" method="_on_host_pressed"]
+[connection signal="pressed" from="multi_inbuilt/GridContainer/join" to="multi_inbuilt" method="_on_join_pressed"]

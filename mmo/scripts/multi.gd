@@ -6,13 +6,6 @@ var player_info = {}
 var players_loaded = 0
 @onready var map = preload("res://scenes/world_pregen.tscn")
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func server_init(port):
 	peer = ENetMultiplayerPeer.new()
