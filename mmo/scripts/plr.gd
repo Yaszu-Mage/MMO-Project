@@ -8,6 +8,7 @@ var stamina_range = [0,100]
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var cam: Camera3D = $Camera3D
+var projectile = preload("res://scenes/projectile.tscn")
 var camera = false
 var sprintmulti = 1
 var slide_multiplier = 4
@@ -79,7 +80,19 @@ func _input(event: InputEvent) -> void:
 			rotate_y(-Input.get_joy_axis(0,JOY_AXIS_RIGHT_X) * (mouse_sensitivity * 100))
 			cam.rotate_x(-Input.get_joy_axis(0,JOY_AXIS_RIGHT_Y) * (mouse_sensitivity * 100))
 			cam.rotation.x = clamp(cam.rotation.x, -1.2,1.2)
+		if event.is_action_pressed("shoot"):
+			wizard_time()
+		
 
+
+func wizard_time():
+	var bulletscene = projectile.instantiate()
+	get_parent().add_child(bulletscene)
+	var angle = rotation.y
+	var tanangle = cam.rotation.x
+	bulletscene.global_position = $"Camera3D/bullet spawn".global_position
+	bulletscene.dir = -Vector3(sin(angle),-tan(tanangle),cos(angle))
+	bulletscene.variablesinstatiated= true
 
 @rpc
 func sync_properties(position,action):

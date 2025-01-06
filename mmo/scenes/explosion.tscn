@@ -1,15 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0mf0vk3biq5y"]
 
 [ext_resource type="Script" path="res://scripts/kaboom.gd" id="1_dxnwu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmfyo"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.909804, 0.388235, 0, 0.490196)
-refraction_enabled = true
+[ext_resource type="Material" path="res://images/mats/fireball.tres" id="2_6ej83"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_y0lpa"]
-material = SubResource("StandardMaterial3D_bmfyo")
+material = ExtResource("2_6ej83")
 radial_segments = 16
 rings = 8
 
@@ -19,7 +14,7 @@ rings = 8
 script = ExtResource("1_dxnwu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00542808, -5.96046e-08, -0.00139356)
+transform = Transform3D(0.998376, 0, 0, 0, 0.998376, 0, 0, 0, 0.998376, 0.00542808, -5.96046e-08, -0.00139356)
 mesh = SubResource("SphereMesh_y0lpa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

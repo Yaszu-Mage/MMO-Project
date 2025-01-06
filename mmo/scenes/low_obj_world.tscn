@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://v4yh5k8n7puk"]
+[gd_scene load_steps=11 format=3 uid="uid://v4yh5k8n7puk"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer-inbuilt.gd" id="1_c7h21"]
 [ext_resource type="Material" uid="uid://m2e3g8mq55ed" path="res://images/mats/badrock.tres" id="2_rx1kp"]
@@ -22,6 +22,14 @@ material = ExtResource("2_rx1kp")
 size = Vector2(99999, 99999)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m745s"]
+
+[sub_resource type="Animation" id="Animation_ehgvt"]
+resource_name = "equip"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsogc"]
+_data = {
+"equip": SubResource("Animation_ehgvt")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -63,6 +71,11 @@ shape = SubResource("WorldBoundaryShape3D_m745s")
 
 [node name="plr" parent="." instance=ExtResource("3_weojn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.68208)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jsogc")
+}
 
 [connection signal="pressed" from="multi_inbuilt/GridContainer/host" to="multi_inbuilt" method="_on_host_pressed"]
 [connection signal="pressed" from="multi_inbuilt/GridContainer/join" to="multi_inbuilt" method="_on_join_pressed"]

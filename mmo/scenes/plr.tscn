@@ -24,6 +24,9 @@ mesh = SubResource("CapsuleMesh_v1vmh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567631, 0)
 fov = 59.7984
 
+[node name="bullet spawn" type="Marker3D" parent="Camera3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.56566)
+
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(16, 496)
 scale = Vector2(10, 10)
