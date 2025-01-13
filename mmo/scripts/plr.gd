@@ -6,6 +6,7 @@ var double_jump = false
 var health_range = [0,100]
 var stamina_range = [0,100]
 const SPEED = 5.0
+var cam_toggle
 const JUMP_VELOCITY = 4.5
 @onready var cam: Camera3D = $Camera3D
 var projectile = preload("res://scenes/projectile.tscn")
@@ -14,6 +15,7 @@ var sprintmulti = 1
 var slide_multiplier = 4
 var last_dir = Vector3.ZERO
 var mouse_sensitivity = 0.002
+@onready var front: Marker3D = $"Camera3D/bullet spawn"
 @onready var healthbar: TextureProgressBar = $Node2D/health
 @onready var staminabar: TextureProgressBar = $Node2D/stamina
 @onready var manabar: TextureProgressBar = $Node2D/mana
@@ -25,15 +27,20 @@ func _enter_tree():
 func _process(delta: float) -> void:
 	if is_multiplayer_authority():
 		camera = true
+	if camera and cam_toggle:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	cam.current = camera
-	if camera:
-		pass
 	staminabar.value = stamina / 100
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 			velocity += get_gravity() * delta
 	if is_multiplayer_authority() and camera:
+		if Input.is_action_pressed("slide"):
+			velocity = global_position.move_toward(Vector3(front.global_position.x,self.position.y,front.global_position.z),delta)
+		
+		
 		if Input.is_action_pressed("sprint") and stamina > 1 or Input.is_action_pressed("dash") and stamina > 1:
 			#Sprint multiplier increases with button
 			cam.fov = lerp(cam.fov,90.0,delta * 2)
@@ -87,6 +94,15 @@ func _input(event: InputEvent) -> void:
 		
 		
 
+func change_stat(range : Array, value : float, operation : bool, change_value : float):
+	if operation:
+		#addition
+		if comp.is_in_range(range,value + change_value):
+			value = value + change_value
+	else:
+		if comp.is_in_range(range,value - change_value):
+			value = value - change_value
+		#subtraction
 
 func wizard_time():
 	var bulletscene = projectile.instantiate()
