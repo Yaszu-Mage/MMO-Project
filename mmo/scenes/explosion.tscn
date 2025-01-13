@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0mf0vk3biq5y"]
 
 [ext_resource type="Script" path="res://scripts/kaboom.gd" id="1_dxnwu"]
-[ext_resource type="Material" path="res://images/mats/fireball.tres" id="2_6ej83"]
+[ext_resource type="Material" uid="uid://bxqa8hjmng1ti" path="res://images/mats/fireball.tres" id="2_hgtau"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_y0lpa"]
-material = ExtResource("2_6ej83")
+material = ExtResource("2_hgtau")
 radial_segments = 16
 rings = 8
 

@@ -1,8 +1,13 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://w1ceutmqqjuf"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bxqa8hjmng1ti"]
 
-[ext_resource type="Shader" path="res://shaders/fireball.gdshader" id="1_svlah"]
+[ext_resource type="Shader" path="res://images/mats/fireball.gdshader" id="1"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_svlah")
-shader_parameter/color = Color(0, 0, 0, 1)
+shader = ExtResource("1")
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/depth_min_layers = 8
+shader_parameter/depth_max_layers = 16
+shader_parameter/depth_flip = Vector2(1, 1)
+shader_parameter/variation = 0.0

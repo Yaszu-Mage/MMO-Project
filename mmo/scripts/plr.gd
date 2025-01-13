@@ -20,11 +20,14 @@ var mouse_sensitivity = 0.002
 
 func _ready():
 	pass
-
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
 func _process(delta: float) -> void:
+	if is_multiplayer_authority():
+		camera = true
 	cam.current = camera
 	if camera:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		pass
 	staminabar.value = stamina / 100
 
 func _physics_process(delta: float) -> void:
@@ -65,13 +68,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-		rpc("sync_properties",self.global_position,null)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority() and camera:
 		if event.is_action_pressed("ui_end"):
-			get_tree().quit()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotate_y(-event.relative.x * mouse_sensitivity)
 			cam.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -83,6 +85,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("shoot"):
 			wizard_time()
 		
+		
 
 
 func wizard_time():
@@ -93,7 +96,3 @@ func wizard_time():
 	bulletscene.global_position = $"Camera3D/bullet spawn".global_position
 	bulletscene.dir = -Vector3(sin(angle),-tan(tanangle),cos(angle))
 	bulletscene.variablesinstatiated= true
-
-@rpc
-func sync_properties(position,action):
-	self.global_position = position

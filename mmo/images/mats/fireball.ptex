@@ -25,24 +25,6 @@
 			"to_port": 0
 		},
 		{
-			"from": "blend2_2",
-			"from_port": 0,
-			"to": "Material",
-			"to_port": 0
-		},
-		{
-			"from": "runes",
-			"from_port": 0,
-			"to": "translate_2",
-			"to_port": 0
-		},
-		{
-			"from": "translate_2",
-			"from_port": 0,
-			"to": "blend2_2",
-			"to_port": 1
-		},
-		{
 			"from": "translate",
 			"from_port": 0,
 			"to": "pixelize",
@@ -57,26 +39,33 @@
 		{
 			"from": "colorize_2",
 			"from_port": 0,
-			"to": "blend2_2",
+			"to": "shear",
+			"to_port": 0
+		},
+		{
+			"from": "shear",
+			"from_port": 0,
+			"to": "Material",
 			"to_port": 0
 		}
 	],
 	"label": "Graph",
 	"longdesc": "",
-	"name": "@Node@9174",
+	"name": "_Node_9174",
 	"node_position": {
 		"x": 0,
 		"y": 0
 	},
 	"nodes": [
 		{
+			"export_last_target": "Godot/Godot 4",
 			"export_paths": {
-
+				"Godot/Godot 4": "C:/Users/yaszu/Documents/GitHub/MMO-Project/mmo/images/mats/fireball"
 			},
 			"name": "Material",
 			"node_position": {
-				"x": 620,
-				"y": 40
+				"x": 860,
+				"y": -120
 			},
 			"parameters": {
 				"albedo_color": {
@@ -118,7 +107,7 @@
 			"generic_size": 1,
 			"name": "blend2",
 			"node_position": {
-				"x": -380,
+				"x": -231.680008,
 				"y": 160
 			},
 			"parameters": {
@@ -132,7 +121,7 @@
 			"name": "colorize",
 			"node_position": {
 				"x": -600,
-				"y": 20
+				"y": 21.440001
 			},
 			"parameters": {
 				"gradient": {
@@ -149,14 +138,14 @@
 							"a": 1,
 							"b": 0,
 							"g": 0,
-							"pos": 0.483507129912631,
+							"pos": 0.483507,
 							"r": 0
 						},
 						{
 							"a": 1,
 							"b": 1,
 							"g": 1,
-							"pos": 0.483527129912631,
+							"pos": 0.483527,
 							"r": 1
 						}
 					],
@@ -186,7 +175,7 @@
 			"name": "translate",
 			"node_position": {
 				"x": -200,
-				"y": 20
+				"y": 18.559999
 			},
 			"parameters": {
 				"translate_x": 0,
@@ -196,51 +185,10 @@
 			"type": "translate"
 		},
 		{
-			"name": "runes",
-			"node_position": {
-				"x": -180,
-				"y": 280
-			},
-			"parameters": {
-				"columns": 4,
-				"rows": 4
-			},
-			"seed_int": 0,
-			"type": "runes"
-		},
-		{
-			"generic_size": 1,
-			"name": "blend2_2",
-			"node_position": {
-				"x": 380,
-				"y": 0
-			},
-			"parameters": {
-				"amount1": "sin($time)",
-				"blend_type1": 18
-			},
-			"seed_int": 0,
-			"type": "blend2"
-		},
-		{
-			"generic_size": 1,
-			"name": "translate_2",
-			"node_position": {
-				"x": -2.9732666015625,
-				"y": 244.02001953125
-			},
-			"parameters": {
-				"translate_x": "$time",
-				"translate_y": 0
-			},
-			"seed_int": 0,
-			"type": "translate"
-		},
-		{
 			"name": "pixelize",
 			"node_position": {
-				"x": 33.1866455078125,
-				"y": -26.7066650390625
+				"x": 33.186646,
+				"y": -26.706665
 			},
 			"parameters": {
 				"c": 8,
@@ -254,8 +202,8 @@
 		{
 			"name": "colorize_2",
 			"node_position": {
-				"x": 220,
-				"y": -60
+				"x": 277.600006,
+				"y": -41.279999
 			},
 			"parameters": {
 				"gradient": {
@@ -263,51 +211,51 @@
 					"points": [
 						{
 							"a": 1,
-							"b": 0.05859375,
-							"g": 0.05859375,
+							"b": 0.058594,
+							"g": 0.058594,
 							"pos": 0,
 							"r": 1
 						},
 						{
 							"a": 1,
-							"b": 0.05859375,
-							"g": 0.05859375,
-							"pos": 0.275753365801643,
+							"b": 0.058594,
+							"g": 0.058594,
+							"pos": 0.275753,
 							"r": 1
 						},
 						{
 							"a": 1,
-							"b": 0.1171875,
-							"g": 0.61376953125,
-							"pos": 0.275773365801643,
+							"b": 0.117188,
+							"g": 0.61377,
+							"pos": 0.275773,
 							"r": 1
 						},
 						{
 							"a": 1,
-							"b": 0.1171875,
-							"g": 0.61376953125,
-							"pos": 0.447509100413603,
-							"r": 1
-						},
-						{
-							"a": 1,
-							"b": 0,
-							"g": 0.9609375,
-							"pos": 0.447529100413603,
+							"b": 0.117188,
+							"g": 0.61377,
+							"pos": 0.447509,
 							"r": 1
 						},
 						{
 							"a": 1,
 							"b": 0,
-							"g": 0.9609375,
-							"pos": 0.733768605741613,
+							"g": 0.960938,
+							"pos": 0.447529,
+							"r": 1
+						},
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0.960938,
+							"pos": 0.733769,
 							"r": 1
 						},
 						{
 							"a": 1,
 							"b": 0,
 							"g": 0.5625,
-							"pos": 0.733788605741613,
+							"pos": 0.733789,
 							"r": 1
 						}
 					],
@@ -316,6 +264,35 @@
 			},
 			"seed_int": 0,
 			"type": "colorize"
+		},
+		{
+			"generic_size": 1,
+			"name": "rotate_2",
+			"node_position": {
+				"x": -355.690918,
+				"y": 9.595222
+			},
+			"parameters": {
+				"cx": 0,
+				"cy": 0,
+				"rotate": -90
+			},
+			"seed_int": 0,
+			"type": "rotate"
+		},
+		{
+			"name": "shear",
+			"node_position": {
+				"x": 539.449158,
+				"y": -49.724739
+			},
+			"parameters": {
+				"amount": "cos($time)",
+				"center": 0,
+				"direction": 0
+			},
+			"seed_int": 0,
+			"type": "shear"
 		}
 	],
 	"parameters": {

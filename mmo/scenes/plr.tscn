@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b04kp0ti5wbgs"]
+[gd_scene load_steps=10 format=3 uid="uid://b04kp0ti5wbgs"]
 
 [ext_resource type="Script" path="res://scripts/plr.gd" id="1_bcfut"]
 [ext_resource type="Texture2D" uid="uid://34ry57v4mcng" path="res://images/hpbarred.png" id="2_1vhgt"]
@@ -10,6 +10,11 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7du23"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v1vmh"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ygeau"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="plr" type="CharacterBody3D"]
 script = ExtResource("1_bcfut")
@@ -36,12 +41,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("2_1vhgt")
 texture_over = ExtResource("3_abfmd")
+metadata/_edit_use_anchors_ = true
 
 [node name="stamina" type="TextureProgressBar" parent="Node2D"]
 offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("4_vrjod")
 texture_over = ExtResource("3_abfmd")
+metadata/_edit_use_anchors_ = true
 
 [node name="mana" type="TextureProgressBar" parent="Node2D"]
 offset_left = 1.0
@@ -52,3 +59,7 @@ scale = Vector2(0.17, 0.17)
 value = 100.0
 texture_under = ExtResource("5_sxo0f")
 texture_progress = ExtResource("6_a0mbk")
+metadata/_edit_use_anchors_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ygeau")
